@@ -227,8 +227,8 @@ def eachTool(tool,rep):
     print('')
     print("Mounting tool T{0:d} for repeat pass {1:d}. ".format(tool,rep+1))
     printer.gCode("T{0:d} ".format(tool))           # Mount correct tool
-    printer.gCode("G1 F5000 X{0:1.3f} ".format(np.around(CPCoords['X'],3)))     # X move first to avoid hitting parked tools. 
-    printer.gCode("G1 F5000 Y{0:1.3f} ".format(np.around(CPCoords['Y'],3)))     # Position Tool in Frame
+    printer.gCode("G1 F5000 Y{0:1.3f} ".format(np.around(CPCoords['Y'],3)))     # Y move first to avoid hitting parked tools
+    printer.gCode("G1 F5000 X{0:1.3f} ".format(np.around(CPCoords['X'],3)))     # Position Tool in Frame
     while(not rxq.empty()): rxq.get()   # re-sync: Ignore any frame messages that came in while we were doing other things. 
     txq.put([TTMB])  # Tell subtask to send us circle messages. 
 
